@@ -1,6 +1,16 @@
 import { MenuIcon, SearchIcon, ShoppingBagIcon } from '@heroicons/react/outline';
+import i18next from 'i18next';
 
 export const Header = () => {
+
+  const changeLanguage = (event: React.ChangeEvent<HTMLSelectElement> ) => {
+    event.preventDefault();
+    const lng = event.target.value;
+    console.log('changeLanguage', lng);
+    i18next.changeLanguage(lng);
+  };
+
+
   return (
     <header className="relative bg-white">
       <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
@@ -39,15 +49,10 @@ export const Header = () => {
               </div>
 
               <div className="hidden lg:ml-8 lg:flex">
-                <a href="#" className="flex items-center text-gray-700 hover:text-gray-800">
-                  <img
-                    src="https://tailwindui.com/img/flags/flag-canada.svg"
-                    alt=""
-                    className="block h-auto w-5 flex-shrink-0"
-                  />
-                  <span className="ml-3 block text-sm font-medium">CAD</span>
-                  <span className="sr-only">, change currency</span>
-                </a>
+               <select className="flex items-center text-gray-700 hover:text-gray-800" onChange={ (e)=> changeLanguage(e) }>
+                  <option value="en">English</option>
+                  <option value="fr">French</option>
+                </select>
               </div>
 
               {/* Search */}

@@ -1,23 +1,22 @@
-import { Header } from '@/components/Header';
+import { BrowserRouter as Router, Routes as Rotas, Route } from 'react-router-dom'
+
 import Home from "@/pages/Home";
 import NotFound from "@/pages/NotFound";
 import Posts from "@/pages/Posts";
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-const App = () => {
+const Routes = () => {
   return (
-    <BrowserRouter>
-      <Header />
-      <div className='app'>
-        <Routes>
+    <Router>
+      <div className="App">
+        <Rotas>
           <Route path="/" element={<Home />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="*" element={<NotFound />} />
-        </Routes>
+        </Rotas>
       </div>
-  </BrowserRouter>
+    </Router>
   );
 };
 
-export default App;
+export default Routes;
+

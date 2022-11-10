@@ -1,21 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import counterReducer from './features/counterSlice';
-import { api } from './services/api';
+import { configureStore } from "@reduxjs/toolkit";
+import postsReducer from '@/app/features/postsSlice'
 
 export const store = configureStore({
-  reducer: {
-    [api.reducerPath]: api.reducer,
-    counter: counterReducer,
-  },
-  middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(api.middleware);
-  },
-});
+    reducer: {
+        posts: postsReducer,
+    }
+})
 
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
 
-// Use throughout your app instead of plain `useDispatch` and `useSelector`
-export const useAppDispatch: () => AppDispatch = useDispatch;
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+export type AppStore = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
